@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+{% block start %}
+<br></br>
+<table class="table table-striped table-hover table-bordered">
+	{% for movie in movies %}
+		<tr>
+			<td>
+				<a href="{{ movie.id }}">{{ movie }}</a>
+			</td>
+            <td>
+                <p>{{ movie.director }}</p>
+            </td>
+			{% if user.is_authenticated %}
+			<td align="right">
+				<a href="/api/movies/{{ movie.id }}" class="btn btn-outline-secondary btn-sm">Update</a>
+
+				<a href="delete/{{movie.id}}" class="btn btn-outline-danger btn-sm">Delete</a>
+			</td>
+			{% endif %}
+		</tr>
+	{% endfor %}
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      
+   
+  
+  {% if movies.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+  
+      <li class="page-item"><a class="page-link" href="?page={{ movies.previous_page_number }}">Previous</a></li>
+      
+  {% endif %}
+  
+  <!--
+  <li class="page-item disabled"><a href="#" class="page-link">Page {{ movies.number }} of {{ movies.paginator.num_pages }}</a></li>
+  -->
+  
+  {% for i in nums %}
+      <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+  
+  {% endfor %}
+  
+  
+  {% if movies.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ movies.next_page_number }}">Next</a></li>
+  
+      <li class="page-item"><a class="page-link" href="?page={{ movies.paginator.num_pages }}">Last &raquo</a></li>
+  
+  {% endif %}
+  
+   </ul>
+  </nav>
+
+{% endblock %}

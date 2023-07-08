@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% block start %}
+    <style>
+    .content {
+      text-align: center;
+      padding: 20px;
+      background-color: white;
+    }
+    </style>
+    <div class="content">
+        <h3>{{ movie.title }}</h3>
+        <p>Director: {{ movie.director }}</p>
+        <p>Release Year: {{ movie.release_date }}</p>
+        <p>Genres: {{ genre|join:", " }}</p>
+    </div>
+
+{% endblock %}

@@ -14,6 +14,19 @@ class MovieList(generics.ListCreateAPIView):
     serializer_class = MovieSerializer
     pagination_class = MovieListPagination
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        genre = self.request.query_params.get('genre')
+        director = self.request.query_params.get('director')
+
+        if genre:
+            queryset = queryset.filter(genre__title=genre)
+
+        if director:
+            queryset = queryset.filter(director__icontains=director)
+
+        return queryset
+
 
 class MovieDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Movie.objects.all()

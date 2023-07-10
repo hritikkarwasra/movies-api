@@ -3,12 +3,12 @@
 This API provides endpoints to manage movies. It allows users to retrieve, create, update, and delete movies. The movies have attributes such as title, genre, release date, and director.
 
 # Endpoints
-'''
+```
 Retrieve a List of All Movies
 URL: /api/movies
 Method: GET
 Description: Retrieve a list of all movies.
-'''
+```
 # Retrieve a Specific Movie
 URL: /api/movies/{id}
 Method: GET
